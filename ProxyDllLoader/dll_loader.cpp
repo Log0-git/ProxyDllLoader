@@ -17,6 +17,9 @@ void __load_dll__()
 	}
 	for (const auto& file : std::filesystem::directory_iterator(base_path))
 	{
-		LoadLibrary(file.path().LOADER_STR().c_str());
+		if (LoadLibrary(file.path().LOADER_STR().c_str()) == NULL)
+		{
+			MessageBox(NULL, L"LoadLibraryW() has failed.", L"Error.", MB_ICONERROR);
+		}
 	}
 }

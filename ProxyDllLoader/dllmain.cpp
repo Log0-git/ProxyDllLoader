@@ -15,7 +15,10 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved)
 	case DLL_PROCESS_ATTACH:
 		DisableThreadLibraryCalls(hModule);
 		if(__load_proxy__()) { CreateThread(nullptr, NULL, _dll_main, hModule, NULL, nullptr); }
-		else { /* handle error */ }
+		else 
+		{ 
+			MessageBox(NULL, L"Error while loading Proxy DLL.", L"Error.", MB_ICONERROR);
+		}
 		break;
 
 	case DLL_THREAD_ATTACH:
